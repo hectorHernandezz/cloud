@@ -18,3 +18,15 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('users', 'UserController');
+
+Route::get('/myaccount', 'UserController@myaccount')->name('myaccount');
+
+Route::get('/change_password', 'UserController@change_password')->name('change_password');
+
+Route::get('/messageboard', 'UserController@messageboard')->name('messageboard');
+
+Route::get('/messages', 'UserController@messages')->name('messages');
+
+Route::get('/people', 'UserController@people')->name('people');
