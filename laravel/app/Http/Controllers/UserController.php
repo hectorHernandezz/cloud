@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Friend;
+use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\View;
 
 class UserController extends Controller
 {
@@ -29,7 +33,16 @@ class UserController extends Controller
 
     public function myaccount()
     {
-        return view('myaccount');
+        $user = Auth::user();
+        $friends = Friend::where('userid1', '=' , $user->userid)->get();
+        $array = array();
+
+        foreach ($friends as $friend) {
+            $userFriend = User::find($friend->userid2);
+            array_push($array, $userFriend);
+        }
+        
+        return view('myaccount')->with('array',$array);
     }
 
     public function change_password()
@@ -49,6 +62,7 @@ class UserController extends Controller
 
     public function people()
     {
-        return view('people');
+        $users = User::paginate(20);
+        return view('people')->with('users', $users);
     }
 }

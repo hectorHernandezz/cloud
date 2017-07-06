@@ -2,10 +2,12 @@
 
 namespace App;
 
+use App\Friend;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable 
 {
     use Notifiable;
 
@@ -32,4 +34,9 @@ class User extends Authenticatable
     ];
 
     public $timestamps = false;
+
+    public function friends()
+    {
+        return $this->belongsToMany('App\Friend', 'friend','userid1','userid2');
+    }
 }

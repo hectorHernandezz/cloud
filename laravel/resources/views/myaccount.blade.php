@@ -87,13 +87,14 @@
                 </ul>
             </div>
             <div class="main-content-2">
+            @foreach ($array as $friend)
                     <ul class="chat">
                        <li class="left clearfix"><span class="chat-img pull-left">
                             <img src="img_photo/408.png" alt="User Avatar" class="img-circle" />
                         </span>
                             <div class="userlist-body clearfix">
                                 <div class="header headername">
-                                    <strong class="primary-font">Anne Patel</strong>
+                                    <strong class="primary-font">{{ $friend->name }}</strong>
                                 </div>
                                 <div class="buttonRight">
                                     <a href="profile.html" type="button"  class="btn btn-md btn-info"><span class="glyphicon glyphicon-option-horizontal"></span></a>
@@ -104,6 +105,7 @@
                             </div>
                         </li>
              </ul>
+             @endforeach
             </div>
           </div>
       </div>
